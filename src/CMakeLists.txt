@@ -42,9 +42,14 @@ endif()
 add_executable(${PROJECT_NAME} ${DONUT_SOURCES} ${DONUT_HEADERS} ${DONUT_RC} ${DONUT_MANIFEST})
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
+set(DONUT_SDL2_LIB SDL2::SDL2)
+if (TARGET SDL2_System)
+	set(DONUT_SDL2_LIB SDL2_System)
+endif()
+
 target_link_libraries(${PROJECT_NAME}
 	PRIVATE
-		SDL2::SDL2
+		${DONUT_SDL2_LIB}
 		Bullet::Bullet
 		OpenAL::OpenAL
 		fmt::fmt
@@ -80,3 +85,10 @@ if (MSVC)
     windows_copy_files(${PROJECT_NAME} ${SDL2_DLL_DIR} "${CMAKE_BINARY_DIR}/bin/$<CONFIG>/" SDL2.dll)
     windows_copy_files(${PROJECT_NAME} ${OPENAL_DLL_DIR} "${CMAKE_BINARY_DIR}/bin/$<CONFIG>/" soft_oal.dll)
 endif()
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory
+		"${CMAKE_SOURCE_DIR}/assets/shaders"
+		"$<TARGET_FILE_DIR:${PROJECT_NAME}>/shaders"
+	COMMENT "Copying shaders to target output directory"
+)

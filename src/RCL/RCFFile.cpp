@@ -2,6 +2,7 @@
 
 #include <Core/File.h>
 #include <RCL/RCFFile.h>
+#include <cstdint>
 
 namespace Donut::RCL
 {

@@ -35,9 +35,15 @@ int main(int argc, char** argv)
 		game->Run();
 #ifdef NDEBUG
 	}
-	catch (std::runtime_error& e)
+	catch (const std::exception& e)
 	{
+		std::cerr << "Fatal error: " << e.what() << std::endl;
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Fatal error", e.what(), nullptr);
+		return EXIT_FAILURE;
+	}
+	catch (...)
+	{
+		std::cerr << "Fatal error: Unknown exception occurred!" << std::endl;
 		return EXIT_FAILURE;
 	}
 #endif

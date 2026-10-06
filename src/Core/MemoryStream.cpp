@@ -1,6 +1,7 @@
 // Copyright 2019-2020 the donut authors. See AUTHORS.md
 
 #include "MemoryStream.h"
+#include <cstdint>
 
 namespace Donut
 {

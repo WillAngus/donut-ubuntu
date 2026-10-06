@@ -9,6 +9,7 @@
 #include <memory>
 #include <vector>
 #include <iostream>
+#include <cstdint>
 
 namespace Donut::P3D
 {

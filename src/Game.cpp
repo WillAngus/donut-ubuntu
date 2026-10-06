@@ -39,6 +39,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cstdint>
 
 namespace Donut
 {
@@ -239,10 +240,15 @@ void Game::Run()
 	SpriteBatch sprites(1024);
 	GL::ShaderProgram& spriteShader = sprites.GetShader();
 
-	auto animCamera = AnimCamera::LoadP3D("art/missions/level01/mission0cam.p3d");
+	std::cout << "Attempting to load animCamera..." << std::endl;
+    auto animCamera = AnimCamera::LoadP3D("art/missions/level01/mission0cam.p3d");
+    if (!animCamera)
+        std::cout << "WARNING: animCamera failed to load!" << std::endl;
 
-	auto frontend = std::make_unique<FrontendProject>();
-	frontend->LoadP3D("art/frontend/scrooby/bootup.p3d");
+    std::cout << "Attempting to load frontend project..." << std::endl;
+    auto frontend = std::make_unique<FrontendProject>();
+    frontend->LoadP3D("art/frontend/scrooby/bootup.p3d");
+    std::cout << "Frontend loaded successfully. Entering main loop..." << std::endl;
 
 	Input::CaptureTextEntry(this, &Game::OnInputTextEntry);
 

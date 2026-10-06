@@ -5,6 +5,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include <cstdint>
 
 namespace Donut
 {

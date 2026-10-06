@@ -5,6 +5,7 @@
 #include <array>
 #include <fmt/format.h>
 #include <iostream>
+#include <cstdint>
 
 namespace Donut::RCL
 {

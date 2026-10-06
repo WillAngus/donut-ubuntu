@@ -4,6 +4,7 @@
 
 #include <Core/MemoryStream.h>
 #include <vector>
+#include <cstdint>
 
 namespace Donut::RCL
 {
